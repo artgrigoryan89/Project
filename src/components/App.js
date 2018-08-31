@@ -7,7 +7,7 @@ import MistakeCheckBox from './TypicalMistakeCheckBox';
 import CommentField from './CommentField';
 import Bookmark from './Bookmark';
 
-export default class FormField extends Component {
+export default class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -22,6 +22,7 @@ export default class FormField extends Component {
         this.pronounceHandleChange = this.pronounceHandleChange.bind(this);
         this.mistakeHandleChange = this.mistakeHandleChange.bind(this);
         this.commentHandleChange = this.commentHandleChange.bind(this);
+        this.buttonHandler = this.buttonHandler.bind(this);
     }
 
     componentWillMount(){
@@ -58,16 +59,22 @@ export default class FormField extends Component {
         })
     }
 
+    buttonHandler(){
+        let data = {};
+        this.props.sendData(data);
+    }
+
     render() {
         return (
             <div className="container">
                 <FormHeader props={this.state.data}/>
-                <AudioPlayer props={this.state.Path}/>
+                <AudioPlayer props={this.state.data.Path}/>
                 <QualityChechkBox handleChange={this.qualityHandleChange}/>
                 <PronounceCheckBox handleChange={this.pronounceHandleChange} props={this.state.data.Cue}/>
                 <MistakeCheckBox handleChange={this.mistakeHandleChange}/>
                 <CommentField handleChange={this.commentHandleChange} props={this.state.data.LabelerLastComments}/>
                 <Bookmark handleChange={this.bookmarkHandleChange}/>
+                <Button onClick={buttonHandler}></Button>
             </div>
         )
     }

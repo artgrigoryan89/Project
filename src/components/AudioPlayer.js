@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import ReactAudioPlayer from 'react-audio-player';
 
-const AudioPlayer = (props) => {
+
+const AudioPlayer = ({path}) => {
     return(
         <ReactAudioPlayer
-            src={props}
-            autoplay
-            controls
+            src={path}
         />
     )
 }

@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import {getData, sendData} from '../module/form_module';
 
 
-import FormField from '../components/FormField';
+import App from '../components/App';
 
 function mapStateToProps(state) {
     return {
@@ -15,4 +15,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({getData, sendData}, dispatch)
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FormField);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

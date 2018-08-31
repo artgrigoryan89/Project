@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-const Bookmark = (handleChange) => {
+const Bookmark = ({handleChange}) => {
     return(
         <div className="form-group">
             <div className="col-lg-9 col-lg-offset-3">

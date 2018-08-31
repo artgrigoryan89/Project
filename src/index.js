@@ -7,7 +7,7 @@ import reduxPromise from 'redux-promise';
 import loggerMiddleware from 'redux-logger';
 
 
-import App from './app';
+import App from './containers/app_container';
 import reducers from './reducers';
 
 const composeEnhancers  = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -22,6 +22,6 @@ const store = createStore(
 );
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <App/>
   </Provider>
   , document.querySelector('.container'));
