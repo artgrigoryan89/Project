@@ -4,18 +4,24 @@ import AudioPlayer from './AudioPlayer';
 import QualityChechkBox from './QualCheckBox';
 import PronounceCheckBox from './PronounceCheckBox';
 import MistakeCheckBox from './TypicalMistakeCheckBox';
-import ComentField from './ComentField';
+import CommentField from './CommentField';
 import Bookmark from './Bookmark';
 
 export default class FormField extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            data:{},
             quality:'',
             pronounce:'',
+            mistake:'',
+            comment:'',
+            bookmarkValue:'',
         };
         this.qualityHandleChange = this.qualityHandleChange.bind(this);
         this.pronounceHandleChange = this.pronounceHandleChange.bind(this);
+        this.mistakeHandleChange = this.mistakeHandleChange.bind(this);
+        this.commentHandleChange = this.commentHandleChange.bind(this);
     }
 
     componentWillMount(){
@@ -33,16 +39,35 @@ export default class FormField extends Component {
         })
     }
 
+    mistakeHandleChange(event){
+        this.setState({
+            mistake:event.target.value
+        })
+    }
+
+    commentHandleChange(event){
+        let data = this.state.comment.push(event.target.value);
+        this.setState({
+            comment: data
+        })
+    }
+
+    bookmarkHandleChange(event){
+        this.setState({
+            bookmarkValue: event.target.value
+        })
+    }
+
     render() {
         return (
             <div className="container">
-                <FormHeader/>
-                <AudioPlayer path={this.state.Path}/>
+                <FormHeader props={this.state.data}/>
+                <AudioPlayer props={this.state.Path}/>
                 <QualityChechkBox handleChange={this.qualityHandleChange}/>
-                <PronounceCheckBox handleChange={this.pronounceHandleChange}  />
-                <MistakeCheckBox/>
-                <ComentField/>
-                <Bookmark/>
+                <PronounceCheckBox handleChange={this.pronounceHandleChange} props={this.state.data.Cue}/>
+                <MistakeCheckBox handleChange={this.mistakeHandleChange}/>
+                <CommentField handleChange={this.commentHandleChange} props={this.state.data.LabelerLastComments}/>
+                <Bookmark handleChange={this.bookmarkHandleChange}/>
             </div>
         )
     }
