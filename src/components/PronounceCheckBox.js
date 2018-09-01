@@ -1,18 +1,10 @@
 import React, {Component} from 'react';
-
-const ListItem = ({value}) => {
-    return(
-        <label className="radio-inline" data-toggle="tooltip" data-container="body" title={value.title}>
-            <input type="radio" name="PronunciationQuality"/> {value.value}
-        </label>
-    )
-};
+import ListItem from './PronounceListItem';
 
 const PronounceCheckBox = ({handleChange, props}) => {
-    let number;
-    const numbers = [{value:1, title:"Дуже погана"}, {value:2, title:"Погана"},{value:3, title:"Добра"}, {value:4, title:"Дуже хороша"}, {value:5, title:"Ідеальна"}];
+    const numbers = [{value:1, title:"Дуже погана", onChange: handleChange}, {value:2, title:"Погана", onChange: handleChange},{value:3, title:"Добра",onChange: handleChange}, {value:4, title:"Дуже хороша", onChange: handleChange}, {value:5, title:"Ідеальна", onChange: handleChange}];
     const listItem = numbers.map((number) =>
-        <ListItem key={"RecordingQuality_Radio" + number.value} value={number} onChange={handleChange}/>
+        <ListItem key={"RecordingQuality_Radio" + number.value} props={number}/>
     )
     return(
         <div className="form-group">

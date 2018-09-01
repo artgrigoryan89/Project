@@ -1,10 +1,12 @@
+import 'babel-polyfill';
+
 export const GET_DATA = 'GET_DATA';
 export const SEND_DATA = 'SEND_DATA';
 
 // ACTIONS
 
-export const getData = () => {
-    /* let request = fetch('https://www.robus.io/api/labeling/get_task', {
+export const getData = async () => {
+    let request = fetch('https://www.robus.io/api/labeling/get_task', {
         method: 'POST',
         body: data,
         headers: {
@@ -18,24 +20,24 @@ export const getData = () => {
         type: GET_DATA,
         payload: payload,
     }
-    */
 }
 
-export const sendData = (data) => {
-   /* let request = fetch('https://www.robus.io/api/labeling/post_label', {
+export const sendData = async (data) => {
+   let postData = JSON.stringify({data});
+   let request = fetch('https://www.robus.io/api/labeling/post_label', {
         metod: 'POST',
-        body: data,
+        body: postData,
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         }
-    });
-    let response = await request;
-    let payload = await response.json();
-    return {
-        type: SEND_DATA,
-        payload: payload,
-    } */
+   });
+   let response = await request;
+   let payload = await response.json();
+        return {
+            type: SEND_DATA,
+            payload: payload,
+        }
 }
 
 
@@ -43,12 +45,12 @@ export const sendData = (data) => {
 
 export function formFieldReducer(state = null, action) {
     switch (action.type) {
-        case ('GET_DATA'):
+        case 'GET_DATA':
             return {
                 ...state,
                 data: action.payload
             }
-        case ('SEND_DATA'):
+        case 'SEND_DATA':
             return {
                 ...state,
                 data: action.payload

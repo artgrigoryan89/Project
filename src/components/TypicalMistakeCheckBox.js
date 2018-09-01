@@ -1,6 +1,23 @@
 import React, {Component} from 'react';
+import ListItemInline from './MistakesInlineListItem';
+import ListItem from './MistakesListItem';
 
 const MistakeCheckBox = ({handleChange}) => {
+    const firstDataInline = [{value: 'z_instead_of_theta', onChange: handleChange, text: '/z/ замість /θ/'},
+        {value: "s_instead_of_theta", onChange: handleChange, text: '/s/ замість /θ/'}];
+    const secondDataInline = [{value: 'z_instead_of_eth', onChange: handleChange, text: '/z/ замість /ð/'},
+        {value: "s_instead_of_eth", onChange: handleChange, text: ' /s/ замість /ð/'}];
+    const data = [{value: "other_not_in_th", onChange: handleChange, text: 'Помилка не в ⟨th⟩ (/θ/ або /ð/ звучать ок)'},
+        {value: "other", onChange: handleChange, text: 'Типова, але жодна з перелічених раніше'}];
+    const firstListItem = firstDataInline.map((number) =>
+        <ListItemInline key={number.value} props={number}/>
+    );
+    const secondListItem = secondDataInline.map((number) =>
+        <ListItemInline key={number.value} props={number}/>
+    );
+    const listItem = data.map((number) =>
+        <ListItem key={number.value} props={number}/>
+    );
     return(
         <div className="form-group">
             <div className="col-lg-3 text-right-lg">
@@ -8,45 +25,12 @@ const MistakeCheckBox = ({handleChange}) => {
             </div>
             <div className="col-lg-9">
                 <div>
-                    <div className="checkbox my-checkbox-inline">
-                        <label>
-                            <input type="checkbox" name="Mistakes" value="z_instead_of_theta" onChange={handleChange} />
-                                /z/ замість /θ/
-                        </label>
-                    </div>
-                    <div className="checkbox my-checkbox-inline">
-                        <label>
-                            <input type="checkbox" name="Mistakes" value="s_instead_of_theta" onChange={handleChange}/>
-                                /s/ замість /θ/
-                        </label>
-                    </div>
+                    {firstListItem}
                 </div>
                 <div>
-                    <div className="checkbox my-checkbox-inline">
-                        <label>
-                            <input type="checkbox" name="Mistakes" value="z_instead_of_eth" onChange={handleChange}/>
-                                /z/ замість /ð/
-                        </label>
-                    </div>
-                    <div className="checkbox my-checkbox-inline">
-                        <label>
-                            <input type="checkbox" name="Mistakes" value="s_instead_of_eth" onChange={handleChange}/>
-                                /s/ замість /ð/
-                        </label>
-                    </div>
+                    {secondListItem}
                 </div>
-                <div className="checkbox">
-                    <label>
-                        <input type="checkbox" name="Mistakes" value="other_not_in_th" onChange={handleChange}/>
-                            Помилка не в ⟨th⟩ (/θ/ або /ð/ звучать ок)
-                    </label>
-                </div>
-                <div className="checkbox">
-                    <label>
-                        <input type="checkbox" name="Mistakes" value="other" onChange={handleChange}/>
-                            Типова, але жодна з перелічених раніше
-                    </label>
-                </div>
+                {listItem}
             </div>
         </div>
     )

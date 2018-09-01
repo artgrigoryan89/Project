@@ -2,10 +2,12 @@ import React, {Component} from 'react';
 import ReactAudioPlayer from 'react-audio-player';
 
 
-const AudioPlayer = ({path}) => {
+const AudioPlayer = ({props}) => {
     return(
         <ReactAudioPlayer
-            src={path}
+            src={"https://www.robus.io/admin/uploads/utterances-mp3" + props}
+            autoplay
+            controls
         />
     )
 }

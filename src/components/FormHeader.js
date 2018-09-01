@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-const FormHeader = (props) => {
+const FormHeader = ({props}) => {
     return(
         <div className="header">
             <div className="col-lg-8 col-lg-offset-2">

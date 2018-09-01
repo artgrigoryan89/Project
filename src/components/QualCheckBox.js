@@ -1,18 +1,10 @@
 import React, {Component} from 'react';
-
-const ListItem = ({value}) => {
-    return(
-        <label className="radio-inline" data-toggle="tooltip" data-container="body" title={value.title}>
-            <input type="radio" name="RecordingQuality"/> {value.value}
-        </label>
-    )
-};
+import ListItem from './QualListItem';
 
 const QualCheckBox = ({handleChange}) => {
-    let number;
-    const numbers = [{value:1, title:"Взагалі нічого не розібрати"}, {value:2, title:"Треба дуже вслуховуватись"},{value:3, title:"Треба вслуховуватись"}, {value:4, title:"Незначні шуми"}, {value:5, title:"Взгалі без шумів"}];
+    const numbers = [{value:1, title:"Взагалі нічого не розібрати", onChange: handleChange}, {value:2, title:"Треба дуже вслуховуватись", onChange: handleChange},{value:3, title:"Треба вслуховуватись", onChange: handleChange}, {value:4, title:"Незначні шуми", onChange: handleChange}, {value:5, title:"Взгалі без шумів", onChange: handleChange}];
     const listItem = numbers.map((number) =>
-            <ListItem key={"RecordingQuality_Radio" + number.value} value={number} onChange={handleChange}/>
+            <ListItem key={"RecordingQuality_Radio" + number.value} props={number}/>
     )
     return(
         <div className="form-group">
